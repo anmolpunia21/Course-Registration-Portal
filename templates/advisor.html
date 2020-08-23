@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+Faculty
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <aside id="sidebar">
+                <ul id="sidemenu" class="sidebar-nav">
+                    <li>
+                        <a href="/faculty/edit_profile">
+                            <span class="sidebar-title ">Edit Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+                            <span class="sidebar-title">Academics</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                            <li><a href="/courses"><i class=""></i>Courses</a></li>
+                            <li><a href="/advisor/ticket_approval"><i class=""></i>Approve Ticket </a></li>
+                            <!-- <li><a href="/drop_course"><i class=""></i>Add or Drop Course</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header">{{name}}</h5>
+                </div><br>
+                <form>
+                    <div class="card">
+                        <h5 class="card-header">Personal Information</h5>
+                        <div class="card-body">
+                            <p class="card-text" name="Overview">
+                                <span style="font-weight:bold">Username :</span> {{user}}<br>
+                                <span style="font-weight:bold">Name :</span> {{name}}<br>
+                                <span style="font-weight:bold">Department :</span> {{department}}<br>
+                                <span style="font-weight:bold">Designation :</span> {{usertype}}<br>
+                                <span style="font-weight:bold">Email ID :</span> {{email}}<br>
+                                <span style="font-weight:bold">Phone Number :</span> {{phone}}<br>
+                            </p>
+                        </div>
+                    </div><br>
+                    <div class="card">
+                        <h5 class="card-header">Projects</h5>
+                        <div class="card-body">
+                            <p id="project" class="card-text" name="projects">{{project | safe}}</p>
+                        </div>
+                    </div><br>
+                    <div class="card">
+                        <h5 class="card-header">Research Output</h5>
+                        <div class="card-body">
+                            <p id='research' class="card-text" name="research">{{research | safe}}</p>
+                        </div>
+                    </div><br>
+                    <!-- <a href="#" id="savebtn" class="btn btn-primary">save</a> -->
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    <!-- {% block script %}
+
+<script>
+    $(document).ready(function () {
+        $('#savebtn').click(function () {
+            var profiledata = {
+                'project': $('#project').text(),
+                'research': $('#research').text()
+            };
+            $.ajax({
+                url: "{{ url_for('faculty') }}",
+                type: 'post',
+                contentType: 'application/json',
+                success: function (data) {
+                    alert(data.success);
+                },
+                data: JSON.stringify(profiledata)
+            });
+        });
+
+    });
+</script>
+{% endblock %} -->

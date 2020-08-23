@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+Faculty
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <aside id="sidebar">
+                <ul id="sidemenu" class="sidebar-nav">
+                    <li>
+                        <a href="/faculty">
+                            <span class="sidebar-title ">View Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+                            <span class="sidebar-title">Academics</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                            <li><a href="/courses"><i class=""></i>Courses</a></li>
+                            <li><a href="/faculty/offer_course"><i class=""></i> Offer Course</a></li>
+                            <li><a href="/faculty/enter_grade"><i class=""></i>Enter Grade</a></li>
+                            <!-- <li><a href="/drop_course"><i class=""></i>Add or Drop Course</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-12">
+                <form>
+                    <div class="card">
+                        <h5 class="card-header">Projects</h5>
+                        <div class="card-body">
+                            <p id="project" class="card-text" contenteditable="true" name="projects">{{project|safe}}</p>
+                        </div>
+                    </div><br>
+                    <div class="card">
+                        <h5 class="card-header">Research Output</h5>
+                        <div class="card-body">
+                            <p id='research' class="card-text" contenteditable="true" name="research">{{research | safe}}</p>
+                        </div>
+                    </div><br>
+                    <a href="" id="savebtn" class="btn btn-primary">save</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    {% block script %}
+
+    <script>
+        $(document).ready(function () {
+            $('#savebtn').click(function () {
+                var profiledata = {
+                    'project': $('#project').html(),
+                    'research': $('#research').html()
+                };
+                $.ajax({
+                    url: "{{ url_for('edit_profile') }}",
+                    type: 'post',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        alert(data.success);
+                    },
+                    data: JSON.stringify(profiledata)
+                });
+            });
+
+        });
+    </script>
+    {% endblock %}

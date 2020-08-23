@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="container"> <br><br>
+    <center>
+        <h1>Welcome On Course Registration Portal!</h1><br>
+    </center>
+    <div class="row">
+        <div class="col-md-12">
+            <center>
+                {% if user %}
+                {% if usertype == 'student' %}
+                <a class="btn btn-primary" href="/student">Profile</a>
+                {% elif usertype == 'faculty'%}
+                <a class="btn btn-primary" href="/faculty">Profile</a>
+                {% else %}
+                <a class="btn btn-primary" href="/advisor">Profile</a>
+                {% endif %}
+                {% else %}
+                <a class="btn btn-primary" href="/login">Login</a>
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Register
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/register/student">As Student</a>
+                    <a class="dropdown-item" href="/register/faculty">As Faculty</a>
+                    <a class="dropdown-item" href="/register/faculty_advisor">As Faculty Advisor</a>
+                </ul>
+                {% endif %}
+
+            </center>
+        </div>
+    </div>
+</div>
+{% endblock %}

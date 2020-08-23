@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}
+Courses
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <aside id="sidebar">
+                <ul id="sidemenu" class="sidebar-nav">
+                    <li>
+                        <a href="/">
+                            <span class="sidebar-title ">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+                            <span class="sidebar-title">Academics</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                            <li><a href="/courses"><i class=""></i>Courses</a></li>
+                            <!-- <li><a href="/student/course_offering"><i class=""></i>Course Offering</a></li> -->
+                            <li><a href="/student/course_registration"><i class=""></i>Course Registration</a></li>
+                            <li><a href="/student/ticket_status"><i class=""></i>Ticket Status</a></li>
+                        </ul>
+                    </li>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <br><br>
+        <center>
+            <h3>Ticket </h3>
+        </center>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">S.No.</th>
+                        <th scope="col">Course Code</th>
+                        <th scope="col">Course Title</th>
+                        <th scope="col">Department</th>
+                        <th scope="col">Credit</th>
+                        <th scope="col">L-T-P</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for item in course %}
+                    <form>
+                        <tr>
+                            <th scope="row">#</th>
+                            <td >{{item[0]}}</td>
+                            <td>{{item[1]}}</td>
+                            <td>{{item[2]}}</td>
+                            <td>{{item[3]}}</td>
+                            <td>{{item[4]}}</td>
+                            {% if item[6] == 0  %}
+                                <td><a href="#"class="btn btn-warning btn-sm"><span style="font-weight: bold;">Pending</span> </a></td>
+                            {% endif %}
+                            {% if item[6] == 1  %}
+                                <td><a href="#"class="btn btn-success btn-sm"><span style="font-weight: bold;">Approved</span> </a></td>
+                            {% endif %}
+                            {% if item[6] == 2  %}
+                                <td><a href="#"class="btn btn-danger btn-sm"><span style="font-weight: bold;">Rejected</span> </a></td>
+                            {% endif %}
+                        </tr>
+                    </form>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+    function addCourse(code) {
+        $.ajax({
+            url: "{{ url_for('course_registration') }}",
+            type: 'post',
+            contentType: 'application/json',
+            success: function (data) {
+                alert(data.success);
+            },
+            data: JSON.stringify({ 'course_id': code })
+        });
+    }
+</script>
+{% endblock %}

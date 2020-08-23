@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+Faculty
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <aside id="sidebar">
+                <ul id="sidemenu" class="sidebar-nav">
+                    <li>
+                        <a href="/faculty">
+                            <span class="sidebar-title ">View Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+                            <span class="sidebar-title">Academics</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                            <li><a href="/courses"><i class=""></i>Courses</a></li>
+                            <li><a href="/faculty/offer_course"><i class=""></i> Offer Course</a></li>
+                            <li><a href="/faculty/enter_grade"><i class=""></i>Enter Grade</a></li>
+                            <!-- <li><a href="/drop_course"><i class=""></i>Add or Drop Course</a></li> -->
+                        </ul>
+                    </li>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="POST" action="/faculty/enter_grade">
+                    <form>
+                        <span style="font-weight: bold;color: red;">{{error}}</span>
+                        <div class="form-group row">
+                            <label for="Course ID" class="col-sm-3 col-form-label">Course ID</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="course_id" placeholder="Course ID"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="student" class="col-sm-3 col-form-label">Student ID</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" name="s_id" placeholder="Username" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="CGPA" class="col-sm-3 col-form-label">Batch</label>
+                            <div class="col-sm-3">
+                                <select name="batch_id" class="custom-select">
+                                    <option value="CSE2019">CSE2019</option>
+                                    <option value="CSE2018">CSE2018</option>
+                                    <option value="CSE2017">CSE2017</option>
+                                    <option value="CSE2016">CSE2016</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="CGPA" class="col-sm-3 col-form-label">Enter Grade</label>
+                            <div class="col-sm-3">
+                                <select name="grade" class="custom-select">
+                                    <option selected>4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" href="" id="savebtn" class="btn btn-primary">Submit</a>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

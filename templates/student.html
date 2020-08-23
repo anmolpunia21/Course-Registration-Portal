@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}
+Student
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <aside id="sidebar">
+                <ul id="sidemenu" class="sidebar-nav">
+                    <li>
+                        <a href="/">
+                            <span class="sidebar-title ">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="accordion-toggle collapsed toggle-switch" data-toggle="collapse" href="#submenu-3">
+                            <span class="sidebar-title">Academics</span>
+                            <b class="caret"></b>
+                        </a>
+                        <ul id="submenu-3" class="panel-collapse collapse panel-switch" role="menu">
+                            <li><a href="/courses"><i class=""></i>Courses</a></li>
+                            <!-- <li><a href="/student/course_offering"><i class=""></i>Course Offering</a></li> -->
+                            <li><a href="/student/course_registration"><i class=""></i>Course Registration</a></li>
+                            <li><a href="/student/ticket_status"><i class=""></i>Ticket Status</a></li>
+                        </ul>
+                    </li>
+                    </li>
+                </ul>
+            </aside>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Welcome {{name}}</h5>
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Personal Information</h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span style="font-weight:bold">Username :</span> {{user}}<br>
+                            <span style="font-weight:bold">Name :</span> {{name}}<br>
+                            <span style="font-weight:bold">Department :</span> {{department}}<br>
+                            <span style="font-weight:bold">Designation :</span> {{usertype}}<br>
+                            <span style="font-weight:bold">Email ID :</span> {{email}}<br>
+                            <span style="font-weight:bold">Phone Number :</span> {{phone}}<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header">CGPA : {{cgpa}} </h5>
+                </div>
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <h5 class="card-header">Courses</h5>
+                    <div class="card-body">
+                        {%for item in course %}
+                        {{item[0]}},
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
